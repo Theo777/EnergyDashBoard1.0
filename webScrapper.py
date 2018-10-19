@@ -1,4 +1,5 @@
 import csv
+import codecs
 from requests import get
 from requests.exceptions import RequestException
 from contextlib import closing
@@ -17,17 +18,18 @@ def readInCSV():
         csv_reader = csv.reader(csv_file)
         lineCount=0
         for row in csv_reader:
-            #print(row)
-            row=str(row)
+            print(row)
+            #row=str(row)
             if(lineCount==0):
                 print(row)
 
             else:
-                print(row)
+                #print(row)
+                #print(row[0])
                 #rowSplit=row.split(',')
 
-                arrOfBuildingNames[lineCount-1]=row[1]
-                arrOfIpAdresses[lineCount - 1] = row[2]
+                arrOfBuildingNames.append(row[1])
+                arrOfIpAdresses.append( row[2])
 
             lineCount+=1
     return arrOfIpAdresses,arrOfBuildingNames
