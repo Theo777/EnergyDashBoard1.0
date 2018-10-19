@@ -6,9 +6,9 @@ from contextlib import closing
 from bs4 import BeautifulSoup
 def main():
     arrOfBuildingNames,arrOfIpAdresses=readInCSV()
-    print(arrOfIpAdresses,arrOfIpAdresses)
+    print(arrOfBuildingNames,arrOfIpAdresses)
     url = "https://www.google.com/"
-    print(simple_get(url))
+    #print(simple_get(url))
     #SCRAPE WEB HERE
 
 def readInCSV():
@@ -18,21 +18,22 @@ def readInCSV():
         csv_reader = csv.reader(csv_file)
         lineCount=0
         for row in csv_reader:
-            print(row)
+            #print(row)
             #row=str(row)
             if(lineCount==0):
-                print(row)
+                 print(None)
+
 
             else:
                 #print(row)
-                #print(row[0])
+                #print(row[2])
                 #rowSplit=row.split(',')
 
                 arrOfBuildingNames.append(row[1])
                 arrOfIpAdresses.append( row[2])
 
             lineCount+=1
-    return arrOfIpAdresses,arrOfBuildingNames
+    return arrOfBuildingNames,arrOfIpAdresses
 def simple_get(url):
 
     try:
