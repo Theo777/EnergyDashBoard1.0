@@ -5,8 +5,8 @@ from requests.exceptions import RequestException
 from contextlib import closing
 from bs4 import BeautifulSoup
 def main():
-    arrOfBuildingNames,arrOfIpAdresses=readInCSV()
-    print(arrOfBuildingNames,arrOfIpAdresses)
+    arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling=readInCSV()
+    print(arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling)
     url = "https://www.google.com/"
     #print(simple_get(url))
     #SCRAPE WEB HERE
@@ -14,7 +14,11 @@ def main():
 def readInCSV():
     arrOfBuildingNames = []
     arrOfIpAdresses=[]
-    with open('Meter_IP_addresses.csv',mode='r') as csv_file:
+    arrOfEnDel=[]
+    arrOfHeating=[]
+    arrOfCooling=[]
+
+    with open('ACMMeters.csv',mode='r') as csv_file:
         csv_reader = csv.reader(csv_file)
         lineCount=0
         for row in csv_reader:
@@ -30,10 +34,14 @@ def readInCSV():
                 #rowSplit=row.split(',')
 
                 arrOfBuildingNames.append(row[1])
-                arrOfIpAdresses.append( row[2])
+                arrOfIpAdresses.append(row[2])
+                arrOfEnDel.append(row[9])
+                arrOfHeating.append(row[7])
+                arrOfCooling.append(row[8])
+
 
             lineCount+=1
-    return arrOfBuildingNames,arrOfIpAdresses
+    return arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling
 def simple_get(url):
 
     try:
