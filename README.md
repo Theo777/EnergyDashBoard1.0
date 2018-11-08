@@ -11,7 +11,7 @@ beautifulsoup4
 pymongo
 requests
 
-These packages are listed in requirements.txt and can be installed with the command ```pip install -r requests.txt```
+These packages are listed in requirements.txt and can be installed with the command ```pip install -r requirements.txt```
 
 # Installing MongoDB
 If you want to run the application locally you will need to be running an instance of mongo on your local machine
