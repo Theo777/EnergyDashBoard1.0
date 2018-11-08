@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meter Home Page</title>
+</head>
+<body>
+<table class="homegrouptable" align="center">
+    <tr>
+        <th>Name Of Meter</th>
+        <th>KiloWatt Value (Raw)</th>
+        <th>Date Stamp</th>
+
+    </tr>
+
+        {%for stuff in info%}
+            <tr>
+                <td>{{stuff.buildingName}}</td>
+                <td>{{stuff.value}}</td>
+                <td>{{stuff.timeStamp}}</td>
+
+            </tr>
+        {%endfor%}
+    </form>
+</table>
+</body>
+</html>
