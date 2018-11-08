@@ -4,12 +4,17 @@ from requests import get
 from requests.exceptions import RequestException
 from contextlib import closing
 from bs4 import BeautifulSoup
+import itertools
 def main():
     arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling=readInCSV()
     print(arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling)
-    url = "https://www.google.com/"
+    url = ""
     #print(simple_get(url))
-    #SCRAPE WEB HERE
+     for (building,ipAdres,enDel,heating,cooling) in itertools.izip_longest(arrOfBuildingNames, arrOfIpAdresses, arrOfEnDel, arrOfHeating, arrOfCooling):
+
+
+def scrapeWeb():
+
 
 def readInCSV():
     arrOfBuildingNames = []
