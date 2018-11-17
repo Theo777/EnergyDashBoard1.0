@@ -9,7 +9,7 @@ class Dao():
         self.collection = db[collection]
 
     #Get documents by building name
-    def getDocumentsByName(self, collection=self.collection, _name):
+    def getDocumentsByName(self, _buildingName, collection=self.collection):
         # return list of MeterReading by building name
         return collection.find({"buildingName": _name})
 
