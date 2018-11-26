@@ -5,4 +5,3 @@ class Meter():
         self.subBuildings = subBuildings
         self.heatingType = heatingType
         self.residents = residents
-    
