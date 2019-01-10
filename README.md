@@ -12,6 +12,18 @@ pymongo
 requests
 
 These packages are listed in requirements.txt and can be installed with the command ```pip install -r requirements.txt```
+## (Optional) Using a Virtual Environment
+If you wish to keep these projects requirements along with their versioning separate from your other libraries 
+you may install the requirements with in a virtual environment
+
+### Anaconda/Miniconda
+To create an environment with these tools type ```conda create --name myenv```
+Activate the environment with 
+Linux or Mac ```conda activate myenv```
+Windows ```activate myenv```
+
+Once you are inside the environment type ```conda install --file requirements.txt```
+If you use Anaconda/Miniconda your virtual environment will not take up space in the repository
 
 # Installing MongoDB
 If you want to run the application locally you will need to be running an instance of mongo on your local machine
