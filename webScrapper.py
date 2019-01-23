@@ -1,20 +1,26 @@
 import csv
 import codecs
-from requests import get
-from requests.exceptions import RequestException
+from lxml import html
 from contextlib import closing
-from bs4 import BeautifulSoup
+
 import itertools
 def main():
     arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling=readInCSV()
     print(arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling)
     url = ""
     #print(simple_get(url))
-     for (building,ipAdres,enDel,heating,cooling) in itertools.izip_longest(arrOfBuildingNames, arrOfIpAdresses, arrOfEnDel, arrOfHeating, arrOfCooling):
+    for (building,ipAdres,enDel,heating,cooling) in itertools.izip_longest(arrOfBuildingNames, arrOfIpAdresses, arrOfEnDel, arrOfHeating, arrOfCooling):
+
 
 
 def scrapeWeb():
+    session_requests = requests.session()
+    login_url = "https://bitbucket.org/account/signin/?next=/"
+    result = session_requests.get(login_url)
 
+    tree = html.fromstring(result.text)
+    authenticity_token = list(set(tree.xpath("//input[@name='csrfmiddlewaretoken']/@value")))[0]
+    result = session_requests.post(login_url,data=payload,headers=dict(referer=login_url))
 
 def readInCSV():
     arrOfBuildingNames = []
@@ -47,31 +53,7 @@ def readInCSV():
 
             lineCount+=1
     return arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling
-def simple_get(url):
 
-    try:
-        with closing(get(url, stream=True)) as resp:
-            if is_good_response(resp):
-                return resp.content
-            else:
-                return None
-
-    except RequestException as e:
-        log_error('Error during requests to {0} : {1}'.format(url, str(e)))
-        return None
-
-
-def is_good_response(resp):
-
-    content_type = resp.headers['Content-Type'].lower()
-    return (resp.status_code == 200
-            and content_type is not None
-            and content_type.find('html') > -1)
-
-
-def log_error(e):
-
-    print(e)
 
 
 if __name__ == '__main__':
