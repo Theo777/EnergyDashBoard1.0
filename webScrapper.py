@@ -1,27 +1,50 @@
 import csv
+import mechanize
+import time
 import codecs
-from lxml import html
+from pyquery import PyQuery
+from selenium import webdriver
+import requests
+from bs4 import BeautifulSoup
 from contextlib import closing
-
+#import urllib2
 import itertools
 def main():
     arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling=readInCSV()
-    print(arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling)
+    #print(arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling)
     url = ""
     #print(simple_get(url))
-    for (building,ipAdres,enDel,heating,cooling) in itertools.izip_longest(arrOfBuildingNames, arrOfIpAdresses, arrOfEnDel, arrOfHeating, arrOfCooling):
+    #for ipAdres in arrOfIpAdresses:
+    print(scrapeWeb("10.150.2.72"))
 
 
+def scrapeWeb(ipAdress):
+    sess = webdriver.Chrome()
+    sess.get("http://"+ipAdress+"/obix/config/Drivers/ObixNetwork/exports/EnergyDelivered_ASC/")
+    element=sess.find_element_by_id('username')
 
-def scrapeWeb():
-    session_requests = requests.session()
-    login_url = "https://bitbucket.org/account/signin/?next=/"
-    result = session_requests.get(login_url)
+    element.send_keys('energy')
+    element1 = sess.find_element_by_id('password')
+    print(element1.id)
+    element1.send_keys('meters')
+    #print(sess.page_source)
+    butt=sess.find_element_by_id('submitButton')
 
-    tree = html.fromstring(result.text)
-    authenticity_token = list(set(tree.xpath("//input[@name='csrfmiddlewaretoken']/@value")))[0]
-    result = session_requests.post(login_url,data=payload,headers=dict(referer=login_url))
+    butt.click()
+    num=sess.page_source
 
+    time.sleep(10)
+    print (num)
+    print(sess.page_source)
+    #br = mechanize.Browser()
+    ##print("http://"+ipAdress+"/obix/config/Drivers/ObixNetwork/exports/EnergyDelivered_ASC/")
+    #try:
+    #payload = {'username': 'energy', 'password': 'meters'}
+    #url="http://"+ipAdress+"/obix/config/Drivers/ObixNetwork/exports/EnergyDelivered_ASC/"
+    #r =requests.(url,payload)
+    #print (r.text)
+    #except:
+        #return False
 def readInCSV():
     arrOfBuildingNames = []
     arrOfIpAdresses=[]
