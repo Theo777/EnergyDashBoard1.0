@@ -5,7 +5,6 @@ import codecs
 from pyquery import PyQuery
 from selenium import webdriver
 import requests
-from bs4 import BeautifulSoup
 from contextlib import closing
 #import urllib2
 import itertools
