@@ -1,25 +1,20 @@
 import csv
-import mechanize
 import time
-import codecs
-from pyquery import PyQuery
 from selenium import webdriver
-import requests
 from contextlib import closing
-#import urllib2
-import itertools
+
 def main():
     arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling=readInCSV()
     #print(arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling)
     url = ""
     #print(simple_get(url))
-    #for ipAdres in arrOfIpAdresses:
-    print(scrapeWeb("10.150.2.72"))
+    for key in arrOfEnDel:
+        print(scrapeWeb(key))
 
 
-def scrapeWeb(ipAdress):
+def scrapeWeb(key):
     sess = webdriver.Chrome()
-    sess.get("http://"+ipAdress+"/obix/config/Drivers/ObixNetwork/exports/EnergyDelivered_ASC/")
+    sess.get("http://10.150.2.72/obix/config/Drivers/ObixNetwork/exports/"+key+"/")
     element=sess.find_element_by_id('username')
 
     element.send_keys('energy')
@@ -32,7 +27,7 @@ def scrapeWeb(ipAdress):
     butt.click()
     num=sess.page_source
 
-    time.sleep(10)
+    #time.sleep(10)
     print (num)
     print(sess.page_source)
     #br = mechanize.Browser()
@@ -51,7 +46,7 @@ def readInCSV():
     arrOfHeating=[]
     arrOfCooling=[]
 
-    with open('ACMMeters.csv',mode='r') as csv_file:
+    with open('Meter_IP_addresses.CSV',mode='r') as csv_file:
         csv_reader = csv.reader(csv_file)
         lineCount=0
         for row in csv_reader:
