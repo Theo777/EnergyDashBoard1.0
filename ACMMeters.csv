@@ -1,0 +1,44 @@
+Device,Building ,IP Address,Gateway,Subnet,Communications Issues,Notes,Heating,Cooling,Point Name
+ALUMTR01,Alumni Hall,10.102.16.1,10.102.101.254,255.255.0.0,,Add both Alumni meters to get total building usage,natural gas,yes,EnergyDelivered_ALU_1
+ALUMTR02,Alumni Hall,10.102.16.2,10.102.101.254,255.255.0.0,,Submeter of Merkert-Tracy,,,EnergyDelivered_ALU_2
+ASCMTR01,Ames Sports Complex,10.118.16.1,10.118.101.254,255.255.0.0,,,natural gas,yes,EnergyDelivered_ASC
+AWCMTR01,Welcome Center,10.118.16.8,10.118.101.254,255.255.0.0,"Continuous Comm Issues - need replacement, under warranty",,natural gas,yes,EnergyDelivered_AWC
+BENMTR01,Benaglia Hall,10.107.16.1,10.107.101.254,255.255.0.0,,,electric,,EnergyDelivered_BEN
+BOLMTR01,Boland Hall,10.106.16.3,10.106.101.254,255.255.0.0,,,,,EnergyDelivered_BOL
+CASMTR01,Cascino Hall,10.107.16.4,10.107.101.254,255.255.0.0,,Subtract Seabrook & Manomet to get total building usage for just Cascino.,,,EnergyDelivered_CAS
+CASMTR02,Pilgrim Heights Village: Seabrook,10.107.16.7,10.107.101.254,255.255.0.0,,Submeter of Cascino,electric,electric,EnergyDelivered_PHV_S
+CASMTR03,Pilgrim Heights Village: Manomet,10.107.16.8,10.107.101.254,255.255.0.0,,Submeter of Cascino,electric,electric,EnergyDelivered_PHV_M
+CMHMTR01,Cushing Martin,10.120.16.1,10.120.101.254,255.255.0.0,,,natural gas,yes,EnergyDelivered_CMH
+COLMTR01,Colonial Court: Dunster,10.105.16.1,10.105.101.254,255.255.0.0,,Colonial: ABCD,natural gas,,EnergyDelivered_COL_ABCD
+COLMTR02,Colonial Court: Fannuel,10.105.16.2,10.105.101.254,255.255.0.0,IP drop not installed,Colonial: EFGH,natural gas,,EnergyDelivered_COL_EFGH
+COLMTR03,Colonial Court: Lafayette,10.105.16.3,10.105.101.254,255.255.0.0,,Colonial: IJKL,natural gas,,EnergyDelivered_COL_IJKL
+COLMTR04,Colonial Court: Mather,10.105.16.4,10.105.101.254,255.255.0.0,,Colonial: MN,natural gas,,EnergyDelivered_COL_MN
+COLMTR05,Colonial Court: Otis A,10.105.16.5,10.105.101.254,255.255.0.0,,Colonial: Otis,natural gas,,EnergyDelivered_COL_O
+COLMTR06,Colonial Court: Quincy A,10.105.16.6,10.105.101.254,255.255.0.0,,Colonial: PQ,natural gas,,EnergyDelivered_COL_PQ
+COMMTR01,Commonwealth Court: Franklin,10.111.16.1,10.111.101.254,255.255.0.0,,Commonwealth: ABCDEF,natural gas,,EnergyDelivered_COM_ABCDEF
+COMMTR02,Commonwealth Court: Harwich,10.111.16.2,10.111.101.254,255.255.0.0,,Commonwealth: GHIJKLMN,natural gas,,EnergyDelivered_COM_GHIJKLMN
+COMMTR03,Commonwealth Court: Orleans A,10.111.16.3,10.111.101.254,255.255.0.0,,Commonwealth: Orleans,natural gas,,EnergyDelivered_COM_O
+COMMTR04,Commonwealth Court: Plymouth A,10.111.16.4,10.111.101.254,255.255.0.0,,Commonwealth: Plymouth,natural gas,,EnergyDelivered_COM_P
+COMMTR05,Commonwealth Court: Rehoboth A,10.111.16.5,10.111.101.254,255.255.0.0,,Commonwealth: Rehoboth,natural gas,,EnergyDelivered_COM_R
+CORMTR01,Corr Hall,10.127.16.1,10.127.101.254,255.255.0.0,,,natural gas,yes,EnergyDelivered_COR
+CTRMTR01,College Center,10.117.16.1,10.117.101.254,255.255.0.0,,,"natural gas, electric",yes,EnergyDelivered_CTR
+DONMTR01,Donahue Hall,10.101.16.3,10.101.101.254,255.255.0.0,,,natural gas,yes,EnergyDelivered_DON
+DUFMTR01,Duffy Academice Center,10.113.16.4,10.113.101.254,255.255.0.0,,,"electric, natural gas, oil",yes,EnergyDelivered_DUF
+FLYMTR01,Flynn Hall,10.107.16.2,10.107.101.254,255.255.0.0,,"Subtract the Cedarville, Cotuit & Humarock meter to get total building usage for just Flynn",electric,,EnergyDelivered_FLY
+FLYMTR02,"Cedarville, Cotuit & Humarock",10.107.16.3,10.107.101.254,255.255.0.0,,Submeter of Flynn,electric,yes,EnergyDelivered_PHB_CCH
+ICEMTR01,Ice Rink Garage,10.124.16.3,10.124.101.254,255.255.0.0,,,,,EnergyDelivered_ICE
+MACMTR01,MacPhaidin Library,10.119.16.1,10.119.101.254,255.255.0.0,Continuous Comm Issues,,natural gas,yes,EnergyDelivered_MAC
+MARMTR01,Martin Institute,10.116.16.1,10.116.101.254,255.255.0.0,,,electric,yes,EnergyDelivered_MAR
+MRYMTR01,Chapel of Mary,10.115.16.1,10.115.101.254,255.255.0.0,Continuous Comm Issues,,natural gas,yes,EnergyDelivered_MRY
+MTBMTR01,Merkert-Tracy,10.103.16.2,10.1013.101.254,255.255.0.0,,"Subtract the Alumni 2 meter to get total building usage for just Merkert-Tracy (Just Alumni 2, not both Alumni meters)",natural gas,yes,EnergyDelivered_MTB
+NDLMTR01,Notre Dame du Lac,10.110.16.1,10.110.101.254,255.255.0.0,,,natural gas,yes,EnergyDelivered_NDL
+NRHMTR01,New Residence Hall,10.134.16.1,10.134.101.254,255.255.0.0,,,natural gas,yes,EnergyDelivered_NRH
+OHHMTR01,O'Hara Hall,10.128.16.1,10.128.101.254,255.255.0.0,,,oil,,EnergyDelivered_OHH
+OHVMTR01,O'Hara Village,10.128.16.2,10.128.101.254,255.255.0.0,,,electric,yes,EnergyDelivered_OHV
+POLMTR01,Campus Police,10.121.16.1,10.121.101.254,255.255.0.0,Intermittent Comm Issues,,natural gas,yes,EnergyDelivered_POL
+RDCMTR01,Roche Dining Commons,10.108.16.1,10.108.101.254,255.255.0.0,,,natural gas,yes,EnergyDelivered_RDC
+SHEMTR01,Sheehan Hall,10.107.16.5,10.107.101.254,255.255.0.0,Continuous Comm Issues,,,,EnergyDelivered_SHE
+SSCMTR01,Shields Science Center,10.124.16.1,10.124.101.254,255.255.0.0,,,natural gas,yes,EnergyDelivered_SSC
+SULMTR01,Sullivan Hall,10.107.16.6,10.107.101.254,255.255.0.0,Continuous Comm Issues,,,,EnergyDelivered_SUL
+VILMTR01,Villa Theresa,10.109.16.1,10.109.101.254,255.255.0.0,,,electric,,EnergyDelivered_VIL
+WBMMTR01,WB Mason Stadium,10.118.16.2,10.118.101.254,255.255.0.0,Intermittent Comm Issues,,,,EnergyDelivered_WBM

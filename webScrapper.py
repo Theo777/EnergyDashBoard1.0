@@ -1,21 +1,44 @@
 import csv
-import codecs
-from requests import get
-from requests.exceptions import RequestException
+import time
+from selenium import webdriver
 from contextlib import closing
-from bs4 import BeautifulSoup
-import itertools
+
 def main():
     arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling=readInCSV()
-    print(arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling)
+    #print(arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling)
     url = ""
     #print(simple_get(url))
-     for (building,ipAdres,enDel,heating,cooling) in itertools.izip_longest(arrOfBuildingNames, arrOfIpAdresses, arrOfEnDel, arrOfHeating, arrOfCooling):
+    for key in arrOfEnDel:
+        print(scrapeWeb(key))
 
 
-def scrapeWeb():
+def scrapeWeb(key):
+    sess = webdriver.Chrome()
+    sess.get("http://10.150.2.72/obix/config/Drivers/ObixNetwork/exports/"+key+"/")
+    element=sess.find_element_by_id('username')
 
+    element.send_keys('energy')
+    element1 = sess.find_element_by_id('password')
+    print(element1.id)
+    element1.send_keys('meters')
+    #print(sess.page_source)
+    butt=sess.find_element_by_id('submitButton')
 
+    butt.click()
+    num=sess.page_source
+
+    #time.sleep(10)
+    print (num)
+    print(sess.page_source)
+    #br = mechanize.Browser()
+    ##print("http://"+ipAdress+"/obix/config/Drivers/ObixNetwork/exports/EnergyDelivered_ASC/")
+    #try:
+    #payload = {'username': 'energy', 'password': 'meters'}
+    #url="http://"+ipAdress+"/obix/config/Drivers/ObixNetwork/exports/EnergyDelivered_ASC/"
+    #r =requests.(url,payload)
+    #print (r.text)
+    #except:
+        #return False
 def readInCSV():
     arrOfBuildingNames = []
     arrOfIpAdresses=[]
@@ -23,7 +46,7 @@ def readInCSV():
     arrOfHeating=[]
     arrOfCooling=[]
 
-    with open('ACMMeters.csv',mode='r') as csv_file:
+    with open('Meter_IP_addresses.CSV',mode='r') as csv_file:
         csv_reader = csv.reader(csv_file)
         lineCount=0
         for row in csv_reader:
@@ -47,31 +70,7 @@ def readInCSV():
 
             lineCount+=1
     return arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling
-def simple_get(url):
 
-    try:
-        with closing(get(url, stream=True)) as resp:
-            if is_good_response(resp):
-                return resp.content
-            else:
-                return None
-
-    except RequestException as e:
-        log_error('Error during requests to {0} : {1}'.format(url, str(e)))
-        return None
-
-
-def is_good_response(resp):
-
-    content_type = resp.headers['Content-Type'].lower()
-    return (resp.status_code == 200
-            and content_type is not None
-            and content_type.find('html') > -1)
-
-
-def log_error(e):
-
-    print(e)
 
 
 if __name__ == '__main__':
