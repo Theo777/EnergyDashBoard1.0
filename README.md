@@ -1,25 +1,26 @@
 Energy Dash Boared for stonehill College
 
 # Table of Contents
-[Installing Python Requirements](#installing-python-requirements)
-
-[Installing MongoDB](#installing-mongodb)
+[Installing Python Requirements](#installing-python-requirements)  
+[Installing MongoDB](#installing-mongodb)  
+[Running MongoDB](#running-mongodb)
 
 # Installing Python Requirements
-This project requires the following python packages:
-beautifulsoup4
-pymongo
+This project requires the following python packages:  
+beautifulsoup4  
+pymongo  
 requests
 
 These packages are listed in requirements.txt and can be installed with the command ```pip install -r requirements.txt```
 ## (Optional) Using a Virtual Environment
-If you wish to keep these projects requirements along with their versioning separate from your other libraries 
+If you wish to keep these projects requirements along with their versioning separate from your other libraries
 you may install the requirements with in a virtual environment
 
 ### Anaconda/Miniconda
 To create an environment with these tools type ```conda create --name myenv```
-Activate the environment with 
-Linux or Mac ```conda activate myenv```
+Activate the environment with  
+
+Linux or Mac ```conda activate myenv```  
 Windows ```activate myenv```
 
 Once you are inside the environment type ```conda install --file requirements.txt```
@@ -39,8 +40,13 @@ Once it it installed you can install mongo by typing ```brew install mongodb``` 
 ## Linux
 
 ### Ubuntu
-```sudo apt-get install mongodb```
+```sudo apt-get install mongodb mongodb-server```
+### Fedora
+```sudo dnf install mongodb mongodb-server```
 
-## Running Mongo
+## Running MongoDB
+### MacOS
 To start an instance of Mongo to use with the application type ```mongod``` in the terminal.
 The default port to access mongo is 27017
+### Linux
+```sudo service mongodb start``` and ```sudo service mongodb stop```
