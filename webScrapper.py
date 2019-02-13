@@ -1,8 +1,8 @@
 import csv
 import time
 from selenium import webdriver
-from model.MeterReading import MeterReading
-from model.MeterReading import MeterReading
+from dao import Dao
+from model.meter_reading import MeterReading
 from contextlib import closing
 
 def main():
@@ -24,8 +24,11 @@ def main():
             tempMeter = MeterReading(tempName,tempValue,tempTimeStamp)
             arrOfMeterReadings.append(tempMeter)
         i+=1
-
-    return arrOfMeterReadings
+    database=Dao()
+    print("HERE")
+    for item in arrOfMeterReadings:
+        database.insertMeterReading(item)
+    #return arrOfMeterReadings
 
 
 def scrapeWeb():
