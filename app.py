@@ -6,8 +6,9 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
 def squareOne():
-    dao=Dao()
-    info=dao.getAllDocumets()
+    #dao=Dao(database_ip="10.17.104.121")
+    #info=dao.getAllDocumets()
+    info = "empty"
 
     if(request.method=='POST'):
         return render_template('home.html', info=info)
