@@ -1,6 +1,8 @@
 import csv
 import time
 from selenium import webdriver
+from dao import Dao
+from model.meter_reading import MeterReading
 from contextlib import closing
 
 def main():
@@ -8,13 +10,30 @@ def main():
     #print(arrOfBuildingNames,arrOfIpAdresses,arrOfEnDel,arrOfHeating,arrOfCooling)
     url = ""
     #print(simple_get(url))
-    for key in arrOfEnDel:
-        print(scrapeWeb(key))
+    timStamp=time.clock()
+    arrOfMeterReadings=[]
+    arrOfID,arrOfVals=scrapeWeb()
+    i=0
+    for item in arrOfID:
+
+        if item in arrOfEnDel:
+
+            tempName=arrOfBuildingNames[arrOfEnDel.index(item)]
+            tempValue=arrOfVals[i]
+            tempTimeStamp=timStamp
+            tempMeter = MeterReading(tempName,tempValue,tempTimeStamp)
+            arrOfMeterReadings.append(tempMeter)
+        i+=1
+    database=Dao()
+    print("HERE")
+    for item in arrOfMeterReadings:
+        database.insertMeterReading(item)
+    #return arrOfMeterReadings
 
 
-def scrapeWeb(key):
+def scrapeWeb():
     sess = webdriver.Chrome()
-    sess.get("http://10.150.2.72/obix/config/Drivers/ObixNetwork/exports/"+key+"/")
+    sess.get("http://10.150.2.72/obix/config/Drivers/ObixNetwork/exports/")
     element=sess.find_element_by_id('username')
 
     element.send_keys('energy')
@@ -27,9 +46,49 @@ def scrapeWeb(key):
     butt.click()
     num=sess.page_source
 
-    #time.sleep(10)
-    print (num)
-    print(sess.page_source)
+    time.sleep(1)
+    #print (num)
+    pagesourseString = sess.page_source
+    #print(pagesourseString)
+    arrOfValues=[]
+    arrOfEnergyDel=[]
+    i=0
+
+    while True:
+        if i==0:
+            print("HERE")
+            splitString = pagesourseString.find('body')
+            pagesourseString = pagesourseString[splitString + 5:]
+        elif i==1:
+            print("HERE")
+            splitString = pagesourseString.find('display')
+            pagesourseString = pagesourseString[splitString + 5:]
+        else:
+
+            splitString=pagesourseString.find('EnergyDelivered')
+            #print(splitString)
+            if splitString==-1:
+                break
+            pagesourseString=pagesourseString[splitString:]
+            #print(pagesourseString)
+            #SystemExit
+            splitString=pagesourseString.find('\"')
+            arrOfEnergyDel.append(pagesourseString[:splitString])
+            splitString = pagesourseString.find('display')
+            print(pagesourseString)
+
+            pagesourseString = pagesourseString[splitString + 58:]
+            temp =pagesourseString.find('\"')
+            #print(pagesourseString)
+            arrOfValues.append(pagesourseString[:temp])
+            throwOut=pagesourseString.find('display')
+            pagesourseString=pagesourseString[throwOut+2:]
+        i+=1
+    print(arrOfValues)
+    print(arrOfEnergyDel)
+    return (arrOfEnergyDel,arrOfValues)
+
+
     #br = mechanize.Browser()
     ##print("http://"+ipAdress+"/obix/config/Drivers/ObixNetwork/exports/EnergyDelivered_ASC/")
     #try:
